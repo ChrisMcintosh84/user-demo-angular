@@ -1,0 +1,27 @@
+<div class="mt-5 container-md mb-5">
+
+  <button type="button" class="btn btn-success mb-3" (click)="onNewClick()">New</button>
+
+  <table class="table table-striped table-bordered table-hover">
+    <thead>
+    <tr>
+      <th class="bg-primary" scope="col">Id</th>
+      <th class="bg-primary" scope="col">Name</th>
+      <th class="bg-primary" scope="col">Age</th>
+      <th class="bg-primary" scope="col">Weight</th>
+      <th class="bg-primary" scope="col"></th>
+      <th class="bg-primary" scope="col"></th>
+    </tr>
+    </thead>
+    <tbody>
+    <tr *ngFor="let user of users" (click)="onRowClick(user)">
+      <td>{{ user.id }}</td>
+      <td>{{ user.name }}</td>
+      <td>{{ user.age }}</td>
+      <td>{{ user.weight }}</td>
+      <td><input type="button" class="btn btn-warning" value="Edit" (click)="editUser(user, $event)"></td>
+      <td><input type="button" class="btn btn-danger" value="Delete" (click)="deleteUser(user, $event)"></td>
+    </tr>
+    </tbody>
+  </table>
+</div>

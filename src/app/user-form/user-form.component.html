@@ -1,0 +1,26 @@
+<form class="container-xl mt-4 mb-4" [formGroup]="userForm" (ngSubmit)="onSubmit()">
+
+  <h1 class="display-6">{{isNew ? 'Add' : 'Update'}} User</h1>
+
+  <input type="hidden" id="id" formControlName="id">
+
+  <div class="mb-3">
+    <label for="name" class="form-label">Name</label>
+    <input type="text" class="form-control" id="name" formControlName="name">
+  </div>
+
+  <div class="mb-3">
+    <label for="age" class="form-label">Age</label>
+    <input type="number" class="form-control" id="age" formControlName="age">
+  </div>
+
+  <div class="mb-3">
+    <label for="weight" class="form-label">Weight (in kgs)</label>
+    <input type="number" step="0.01" class="form-control" id="weight" formControlName="weight">
+  </div>
+
+  <button type="submit" class="btn btn-success me-4">{{isNew ? 'Add' : 'Update'}}</button>
+
+  <button type="button" class="btn btn-danger me-4" (click)="backToTable()">Cancel</button>
+
+</form>
