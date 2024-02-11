@@ -30,7 +30,7 @@ export class UserService {
   addUser(userModel: UserModel): Observable<UserModel> {
     return this.http.post<UserModel>(`${this.apiUrl}/addNew`, userModel)
       .pipe(
-        tap(_ => console.log('added plant')),
+        tap(_ => console.log('added user')),
         catchError(this.handleError<UserModel>(`addUser user=${userModel}`))
       );
   }
@@ -38,8 +38,24 @@ export class UserService {
   updateUser(userModel: UserModel): Observable<UserModel> {
     return this.http.put<UserModel>(`${this.apiUrl}/update`, userModel)
       .pipe(
-        tap(_ => console.log('updated plant')),
+        tap(_ => console.log('updated user')),
         catchError(this.handleError<UserModel>(`updateUser user=${userModel}`))
+      );
+  }
+
+  deleteUser(id: BigInt): Observable<any> {
+    return this.http.delete(`${this.apiUrl}/delete/${id}`)
+      .pipe(
+        tap(_ => console.log('deleted user')),
+        catchError(this.handleError<UserModel>(`deleteUser id=${id}`))
+      );
+  }
+
+  searchUsers(searchTerm: string):Observable<UserModel[]> {
+    return this.http.get<UserModel[]>(`${this.apiUrl}/search/${searchTerm}`)
+      .pipe(
+        tap(_ => console.log('searching...')),
+        catchError(this.handleError<UserModel[]>('searchUser', []))
       );
   }
 

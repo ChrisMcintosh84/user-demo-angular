@@ -34,19 +34,30 @@ export class UserTableComponent implements OnInit {
   }
 
   deleteUser(userModel: UserModel, event: any) {
+    let id = userModel.id;
 
+    this.userService.deleteUser(userModel.id).subscribe(
+      () => {
+        this.users = this.users.filter(user => user.id !== id)
+      }
+    );
+
+    event.stopPropagation();
   }
 
   onNewClick() {
     this.router.navigate(['userForm-new']);
   }
 
-  onSearchClick() {
-
+  onSearchClick(value: string) {
+    this.userService.searchUsers(value).subscribe(users => {
+      this.users = users;
+    });
   }
 
   onClearClick() {
-
+    this.getUsers();
+    this.tableSearchText = '';
   }
 
   onRowClick(userModel: UserModel) {
